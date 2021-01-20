@@ -1,0 +1,11 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+  - name: check if dhcp is installed
+    package:
+      name: "dhcp"
+      state: present
+    register: stat_result
+    failed_when: stat_result.changed
+...
