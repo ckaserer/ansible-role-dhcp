@@ -1,11 +1,19 @@
-# roles/dhcp/defaults/main.yml
 ---
 
-dhcp_apparmor_fix: true
+# Boolean. Continue if includes file(s) missing from role's files/
 dhcp_global_includes_missing: false
+
+# installation behavior for the dhcp server
 dhcp_packages_state: "present"
+
+# The role variable dhcp_subnets contains a list of dicts, specifying 
+# the subnet declarations to be added to the DHCP configuration file. 
+# Every subnet declaration should have an ip and netmask, other options 
+# are not mandatory. We start this section with an example, a complete 
+# overview of supported options follows.
 dhcp_subnets: []
 
+# Specify a single interface to bind the dhcp server to.
+# By default it binds to all interfaces
 #dhcp_interface: eth0
-
 ...

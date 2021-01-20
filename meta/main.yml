@@ -1,25 +1,21 @@
 ---
-
 galaxy_info:
-  author: Bert Van Vreckem, Clemens Kaserer <ckaserer@gmail.com>
+  author: Bert Van Vreckem, Clemens Kaserer
   description: Ansible role for setting up ISC DHCPD.
   license: BSD
   role_name: dhcp
   min_ansible_version: 2.10
   platforms:
-    - name: EL
-      versions:
-        - 7
-        - 8
-    - name: Fedora
-      versions:
-        - 29
     - name: Ubuntu
       versions:
-        - bionic
+        - focal
+    - name: Debian
+      versions:
+        - buster
   galaxy_tags:
     - system
     - networking
+    - dhcp
+    - iscdhcpserver
 dependencies: []
-
 ...

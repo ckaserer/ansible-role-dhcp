@@ -1,6 +1,7 @@
 ---
-- name: Verify
-  hosts: all
+- name: Internal Verification
+  hosts: instance
+  gather_facts: no
   tasks:
   - name: check if dhcp is installed
     package:
@@ -24,4 +25,27 @@
       regexp: '^INTERFACESv4='
     register: interface_result
     failed_when: interface_result.changed
+
+- name: External Verification
+  hosts: verify
+  gather_facts: no
+  tasks:
+    - name: Update Cache
+      apt: 
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install dhcping
+      apt:
+        name: 
+          - dhcping
+          - bootp
+
+    - name: Test dhcp with dhcping
+      command: dhcping -V -i -s 10.0.0.3 -h "00:de:ad:be:ef:a0"
+      register: dhcping_results
+
+    - name: dhcping result
+      debug:
+        var: dhcping_results
 ...

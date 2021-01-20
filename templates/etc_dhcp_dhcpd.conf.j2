@@ -232,12 +232,22 @@ option ntp-servers {{ subnet.ntp_servers|join(', ') }};
 {{ subnet.booting }} booting;
 {% endif %}
 {% if subnet.hosts is defined %}
+  group {
+    use-host-decl-names on;
 {% for host in subnet.hosts %}
-  host {{ host.name }} {
-    hardware ethernet {{ host.mac }};
-    fixed-address {{ host.ip }};
-  }
+    host {{ host.name | replace (" ","_") | replace ("'","_") | replace (":","_") }} {
+      hardware ethernet {{ host.mac }};
+{% if host.ip is defined %}
+      fixed-address {{ host.ip }};
+{% endif %}
+{% if host.options is defined %}
+{% for opt_key,opt_value in host.options.items() %}
+      option {{ opt_key }} {{ opt_value }};
 {% endfor %}
+{% endif %}
+    }
+{% endfor %}
+  }
 {% endif %}
 {% if subnet.pools is defined %}
   # Address pool(s)
@@ -287,19 +297,22 @@ option ntp-servers {{ subnet.ntp_servers|join(', ') }};
 #
 # Host declarations
 #
+group {
+  use-host-decl-names on;
 {% for host in dhcp_hosts %}
-host {{ host.name | replace (" ","_") | replace ("'","_") | replace (":","_") }} {
-  hardware ethernet {{ host.mac }};
+  host {{ host.name | replace (" ","_") | replace ("'","_") | replace (":","_") }} {
+    hardware ethernet {{ host.mac }};
 {% if host.ip is defined %}
-  fixed-address {{ host.ip }};
+    fixed-address {{ host.ip }};
+{% endif %}
 {% if host.options is defined %}
 {% for opt_key,opt_value in host.options.items() %}
-  option {{ opt_key }} {{ opt_value }};
+    option {{ opt_key }} {{ opt_value }};
 {% endfor %}
 {% endif %}
-{% endif %}
+  }
+{% endfor %}
 }
-{% endfor %}
 {% endif %}
 {% if dhcp_pxeboot_server is defined %}
 
