@@ -292,6 +292,11 @@ host {{ host.name | replace (" ","_") | replace ("'","_") | replace (":","_") }}
   hardware ethernet {{ host.mac }};
 {% if host.ip is defined %}
   fixed-address {{ host.ip }};
+{% if host.options is defined %}
+{% for opt_key,opt_value in host.options.items() %}
+  option {{ opt_key }} {{ opt_value }};
+{% endfor %}
+{% endif %}
 {% endif %}
 }
 {% endfor %}

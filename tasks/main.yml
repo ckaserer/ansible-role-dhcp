@@ -15,6 +15,13 @@
     state: "{{ dhcp_packages_state }}"
   tags: dhcp
 
+- name: Set Interface | Set a default listening interface
+  lineinfile:
+    dest: /etc/default/isc-dhcp-server
+    line: "INTERFACESv4=\"{{ dhcp_interface }}\""
+    regexp: '^INTERFACESv4='
+  tags: dhcp
+
 - include_tasks: apparmor-fix.yml
   when: ansible_os_family == 'Debian' and dhcp_apparmor_fix|bool
   tags: dhcp
@@ -39,6 +46,7 @@
   copy:
     src: "{{ item }}"
     dest: "{{ dhcp_config_dir }}/{{ item | basename }}"
+    mode: 0644
   with_items: "{{ dhcp_global_includes }}"
   when: dhcp_global_includes is defined
   ignore_errors: "{{ dhcp_global_includes_missing }}"
@@ -62,9 +70,19 @@
   notify: restart dhcp
   tags: dhcp
 
+- name: "Create isc-dhcp-service definition file"
+  template:
+    src: "isc-dhcp-server.service.j2"
+    dest: "{{ dhcp_service_file_location }}"
+    mode: 0644
+  become: true
+  notify: restart dhcp
+
 - name: "Ensure service is {{ dhcp_global_server_state | default('started') }}"
   service:
     name: "{{ dhcp_service }}"
     state: "{{ dhcp_global_server_state | default('started') }}"
     enabled: true
   tags: dhcp
+
+...

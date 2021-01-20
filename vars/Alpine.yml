@@ -10,3 +10,8 @@ dhcp_config: /etc/dhcp/dhcpd.conf
 
 dhcp_service: dhcpd
 
+dhcp_restart_policy: on-failure
+
+dhcp_restart_time: 5
+
+dhcp_service_file_location: /etc/systemd/system/isc-dhcp-server
