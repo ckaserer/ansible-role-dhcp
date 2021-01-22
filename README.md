@@ -2,9 +2,7 @@
 
 Ansible role for setting up ISC DHCPD. The responsibilities of this role are to install packages and manage the configuration ([dhcpd.conf(5)](http://linux.die.net/man/5/dhcpd.conf)). Managing the firewall configuration is NOT a concern of this role. You can do this in your local playbook, or use another role (e.g. [bertvv.rh-base](https://galaxy.ansible.com/bertvv/rh-base).
 
-Refer to the [change log](CHANGELOG.md) for notable changes in each release.
-
-Do you use/like this role? Please consider giving it a star. If you [rate this role](https://galaxy.ansible.com/bertvv/dhcp) on Ansible Galaxy and find it lacking in some respect, please consider opening an Issue with actionable feedback or a PR so we can improve it. Thank you!
+Do you use/like this role? Please consider giving it a star. If you [rate this role](https://galaxy.ansible.com/ckaserer/dhcp) on Ansible Galaxy and find it lacking in some respect, please consider opening an Issue with actionable feedback or a PR so we can improve it. Thank you!
 
 ## Requirements
 
@@ -13,8 +11,6 @@ No specific requirements
 ## Role Variables
 
 This role is able to set global options, and to specify subnet declarations.
-
-See the [test playbook](https://github.com/bertvv/ansible-role-dhcp/blob/vagrant-tests/test.yml) for a working example of a DHCP server in a test environment based on Vagrant and VirtualBox. This section is a reference of all supported options.
 
 ### Global options
 
@@ -200,6 +196,7 @@ You can specify hosts that should get a fixed IP address based on their MAC by s
 | `name` | The name of the host                      |
 | `mac`  | The MAC address of the host               |
 | `ip`   | The IP address to be assigned to the host |
+| `options` | Key-Value pair of a particular host    |
 
 ```Yaml
 dhcp_hosts:
@@ -209,6 +206,8 @@ dhcp_hosts:
   - name: cl2
     mac: '00:de:ad:be:ef:00'
     ip: 192.168.222.151
+    options:
+      "host-name": "cl2"
 ```
 
 ### Specify PXEBoot server
@@ -242,7 +241,7 @@ You can create your own variables to use within the template allowing for total 
             value: "/configurations/j1-switch.config"
 ```
 
-Finally the jinja template must contain valid ISC DHCPD configuration ([dhcpd.conf(5)](http://linux.die.net/man/5/dhcpd.conf)). This is an example of using [bertvv.dhcp](https://galaxy.ansible.com/bertvv/dhcp) for juniper Zero-Touch-Provisioning.
+Finally the jinja template must contain valid ISC DHCPD configuration ([dhcpd.conf(5)](http://linux.die.net/man/5/dhcpd.conf)). This is an example of using [ckaserer.dhcp](https://galaxy.ansible.com/ckaserer/dhcp) for juniper Zero-Touch-Provisioning.
 
 ```Jinja
 option space NEW_OP;
@@ -279,14 +278,6 @@ host {{ host.name | replace (" ","_") | replace ("'","_") | replace (":","_") }}
 
 No dependencies.
 
-## Example Playbook
-
-See the [test playbook](https://github.com/bertvv/ansible-role-dhcp/blob/vagrant-tests/test.yml)
-
-## Testing
-
-Tests for this role are provided in the form of a Vagrant environment that is kept in a separate branch, `vagrant-tests`. For more information about setting up the test environment and running the tests, refer to the [README](https://github.com/bertvv/ansible-role-dhcp/blob/vagrant-tests/README.md) of the test branch.
-
 ## License
 
 BSD
@@ -300,9 +291,10 @@ Issues, feature requests, ideas are appreciated and can be posted in the Issues 
 - [Ahmed Sghaier](https://github.com/asghaier)
 - [Alessandro Ogier](https://github.com/aogier)
 - [Alex Gittings](https://github.com/minitriga)
-- [Bert Van Vreckem](https://github.com/bertvv) (maintainer)
+- [Bert Van Vreckem](https://github.com/bertvv)
 - [Birgit Croux](https://github.com/birgitcroux/)
 - [@cacheira](https://github.com/cacheira)
+- [Clemens Kaserer](https://github.com/ckaserer) (maintainer)
 - [@donvipre](https://github.com/donvipre)
 - Felix Egli
 - [Guillaume Parent](https://github.com/gparent)
@@ -313,4 +305,4 @@ Issues, feature requests, ideas are appreciated and can be posted in the Issues 
 - [Maxim Baranov](https://github.com/mbaran0v)
 - [@RayfordJ](https://github.com/rayfordj)
 - [Rian Bogle](https://github.com/rbogle/)
-- [Stuart Knight](https://github.com/blofeldthefish) (maintainer)
+- [Stuart Knight](https://github.com/blofeldthefish)
