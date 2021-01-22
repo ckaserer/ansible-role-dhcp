@@ -1,4 +1,6 @@
-# ckaserer.dhcp [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ckaserer/ansible-role-dhcp/CI?style=flat-square)](https://github.com/ckaserer/ansible-role-dhcp/actions?query=workflow%3ACI) ![bsd](https://img.shields.io/badge/license-BSD-%20brightgreen.svg?style=flat-square) ![Maintenance](https://img.shields.io/maintenance/yes/2021?style=flat-square)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ckaserer/ansible-role-dhcp/CI?style=flat-square)](https://github.com/ckaserer/ansible-role-dhcp/actions?query=workflow%3ACI) ![bsd](https://img.shields.io/badge/license-BSD-%20brightgreen.svg?style=flat-square) ![Maintenance](https://img.shields.io/maintenance/yes/2021?style=flat-square)
+
+# ckaserer.dhcp 
 
 Ansible role for setting up ISC DHCPD. The responsibilities of this role are to install packages and manage the configuration ([dhcpd.conf(5)](http://linux.die.net/man/5/dhcpd.conf)). Managing the firewall configuration is NOT a concern of this role. You can do this in your local playbook, or use another role (e.g. [bertvv.rh-base](https://galaxy.ansible.com/bertvv/rh-base).
 
