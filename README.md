@@ -296,7 +296,7 @@ Issues, feature requests, ideas are appreciated and can be posted in the Issues 
 - [Bert Van Vreckem](https://github.com/bertvv)
 - [Birgit Croux](https://github.com/birgitcroux/)
 - [@cacheira](https://github.com/cacheira)
-- [Clemens Kaserer](https://github.com/ckaserer) (maintainer)
+- [ckaserer](https://github.com/ckaserer) (maintainer)
 - [@donvipre](https://github.com/donvipre)
 - Felix Egli
 - [Guillaume Parent](https://github.com/gparent)

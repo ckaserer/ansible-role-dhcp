@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  author: Bert Van Vreckem, Clemens Kaserer
+  author: Bert Van Vreckem, ckaserer
   description: Ansible role for setting up ISC DHCPD.
   license: BSD
   role_name: dhcp
