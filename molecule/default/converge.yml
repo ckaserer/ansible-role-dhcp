@@ -69,7 +69,19 @@
               - name: "master2"
                 mac: "{{ mac_prefix }}:0c"
                 ip: "{{ network_ip }}.12"
- 
+              - name: "master3"
+                mac: "{{ mac_prefix }}:0d"
+                ip: "{{ network_ip }}.13"
+              - name: "master4"
+                mac: "{{ mac_prefix }}:0e"
+                ip: "{{ network_ip }}.14"
+              - name: "master5"
+                mac: "{{ mac_prefix }}:0f"
+                ip: "{{ network_ip }}.15"
+              - name: "master6"
+                mac: "{{ mac_prefix }}:10"
+                ip: "{{ network_ip }}.16"
+
               - name: worker20
                 mac: "{{ mac_prefix }}:14"
                 ip: "{{ network_ip }}.20"
