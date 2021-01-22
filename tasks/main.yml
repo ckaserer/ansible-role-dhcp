@@ -1,6 +1,4 @@
-# roles/dhcp/tasks/main.yml
 ---
-
 - name: Load distro-specific variables
   include_vars: "{{ item }}"
   with_first_found:
