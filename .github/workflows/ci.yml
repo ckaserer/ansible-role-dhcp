@@ -42,9 +42,6 @@ jobs:
       fail-fast: false
 
     steps:
-      - name: force pipeline to fail
-        run: exit 1
-
       - name: Checkout Code
         uses: actions/checkout@v2
         with:
