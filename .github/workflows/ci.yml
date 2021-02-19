@@ -74,7 +74,7 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-        
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
@@ -94,7 +94,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_ICON: https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Ansible_logo.svg/200px-Ansible_logo.svg.png
+          SLACK_ICON: https://github.com/ckaserer/logos/raw/master/ansible.png
           SLACK_USERNAME: ${{ github.repository }}
           SLACK_COLOR: '#ff0033'
           SLACK_FOOTER: ''
