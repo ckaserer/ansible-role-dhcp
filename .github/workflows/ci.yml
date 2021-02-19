@@ -8,11 +8,11 @@ name: CI
     tags-ignore:
       - '*'
   schedule:
-    - cron: "30 8 * * 3"
+    - cron: '30 8 * * 3'
 
 defaults:
   run:
-    working-directory: 'ckaserer.dhcp'
+    working-directory: ckaserer.dhcp
 
 jobs:
   linter:
@@ -22,13 +22,13 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
         with:
-          path: 'ckaserer.dhcp'
+          path: ckaserer.dhcp
 
       - name: Lint Code Base
         uses: github/super-linter@v3
         env:
           VALIDATE_ALL_CODEBASE: true
-          FILTER_REGEX_EXCLUDE: ".*.md"
+          FILTER_REGEX_EXCLUDE: ''.*.md'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   molecule:
@@ -45,12 +45,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
         with:
-          path: 'ckaserer.dhcp'
+          path: ckaserer.dhcp
 
       - name: Set up Python 3
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: 3.x
 
       - name: Install Dependencies
         run: pip3 install -r requirements.txt
@@ -62,7 +62,7 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           MOLECULE_DISTRO: ${{ matrix.distro }}
 
-      - name: Notify Slack channel that the job has failed
+      - name: Notify Slack channel on failure
         if: ${{ failure() }}
         uses: rtCamp/action-slack-notify@v2
         env:
