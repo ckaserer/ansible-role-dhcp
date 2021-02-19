@@ -86,8 +86,6 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ failure() }}
     needs:
-      - linter
-      - molecule
       - merge
     steps:  
       - name: Notify Slack channel on failure
