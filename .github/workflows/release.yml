@@ -38,7 +38,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install Ansible
-        run: pip3 install ansible
+        run: pip3 install ansible-base
 
       - name: Trigger a new import on Galaxy
         run: >
