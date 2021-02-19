@@ -42,6 +42,9 @@ jobs:
       fail-fast: false
 
     steps:
+      - name: force pipeline to fail
+        run: exit 1
+
       - name: Checkout Code
         uses: actions/checkout@v2
         with:
@@ -62,11 +65,15 @@ jobs:
           ANSIBLE_FORCE_COLOR: 1
           MOLECULE_DISTRO: ${{ matrix.distro }}
 
-      - name: force pipeline to fail
-        run: exit 1
-
+  notify:
+    name: Slack Notifications
+    runs-on: ubuntu-latest
+    if: ${{ failure() }}
+    needs:
+      - linter
+      - molecule
+    steps:  
       - name: Notify Slack channel on failure
-        if: ${{ failure() }}
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
