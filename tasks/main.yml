@@ -16,7 +16,7 @@
 - name: Set Interface | Set a default listening interface
   lineinfile:
     dest: /etc/default/isc-dhcp-server
-    line: "INTERFACESv4=\"{{ dhcp_interface }}\""
+    line: 'INTERFACESv4=\"{{ dhcp_interface }}\"'
     regexp: '^INTERFACESv4='
   tags: dhcp
   when: dhcp_interface is defined
@@ -61,9 +61,9 @@
   notify: restart dhcp
   tags: dhcp
 
-- name: "Create isc-dhcp-service definition file"
+- name: Create isc-dhcp-service definition file
   template:
-    src: "isc-dhcp-server.service.j2"
+    src: isc-dhcp-server.service.j2
     dest: "{{ dhcp_service_file_location }}"
     mode: 0644
   become: true

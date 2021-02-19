@@ -21,9 +21,9 @@
       include_role:
         name: ckaserer.dhcp
       vars:
-        network_ip: "10.0.0"                      # easy to change network ip if it is a class c network
-        netmask: "255.255.255.0"                  # class c network netmask
-        mac_prefix: "00:11:22:33:44"
+        network_ip: '10.0.0'                      # easy to change network ip if it is a class c network
+        netmask: '255.255.255.0'                  # class c network netmask
+        mac_prefix: '00:11:22:33:44'
 
         dhcp_global_authoritative: authoritative
         dhcp_global_booting: allow                # allow pxe booting

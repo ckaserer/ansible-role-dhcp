@@ -4,7 +4,7 @@
 dhcp_global_includes_missing: false
 
 # installation behavior for the dhcp server
-dhcp_packages_state: "present"
+dhcp_packages_state: 'present'
 
 # The role variable dhcp_subnets contains a list of dicts, specifying 
 # the subnet declarations to be added to the DHCP configuration file. 
