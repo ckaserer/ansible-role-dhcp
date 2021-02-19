@@ -84,7 +84,7 @@ jobs:
     if: ${{ failure() }}
     needs:
       - merge
-    steps:  
+    steps:
       - name: Notify Slack channel on failure
         uses: rtCamp/action-slack-notify@v2
         env:
