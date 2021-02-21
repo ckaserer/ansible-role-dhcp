@@ -21,7 +21,7 @@
   - name: Check if interface is set to eth0
     lineinfile:
       dest: /etc/default/isc-dhcp-server
-      line: 'INTERFACESv4=\"eth0\"'
+      line: 'INTERFACESv4="eth0"'
       regexp: '^INTERFACESv4='
     register: interface_result
     failed_when: interface_result.changed

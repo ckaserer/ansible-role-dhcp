@@ -9,12 +9,12 @@ platforms:
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     privileged: true
     docker_networks:
-    - name: 'k3s'
+    - name: dhcp_molecule
       ipam_config:
         - subnet: '10.0.0.0/24'
     networks:
-      - name: "k3s"
-        ipv4_address: '10.0.0.3'
+      - name: dhcp_molecule
+        ipv4_address: '10.0.0.2'
     pre_build_image: true
     tmpfs:
       - /run
@@ -26,13 +26,18 @@ platforms:
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     privileged: true
     docker_networks:
-    - name: k3s
+    - name: dhcp_molecule
       ipam_config:
         - subnet: '10.0.0.0/24'
     networks:
-      - name: k3s
-        ipv4_address: '10.0.0.2'
+      - name: dhcp_molecule
+        ipv4_address: '10.0.0.3'
     pre_build_image: true
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup
 provisioner:
   name: ansible
 verifier:

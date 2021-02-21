@@ -16,7 +16,7 @@
 - name: Set Interface | Set a default listening interface
   lineinfile:
     dest: /etc/default/isc-dhcp-server
-    line: 'INTERFACESv4=\"{{ dhcp_interface }}\"'
+    line: 'INTERFACESv4="{{ dhcp_interface }}"'
     regexp: '^INTERFACESv4='
   tags: dhcp
   when: dhcp_interface is defined
