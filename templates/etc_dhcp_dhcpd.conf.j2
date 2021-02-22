@@ -29,8 +29,17 @@ log-facility {{ dhcp_global_log_facility }};
 {% if dhcp_global_next_server is defined %}
 next-server {{ dhcp_global_next_server}};
 {% endif %}
-{% if dhcp_global_filename is defined %}
-filename "{{ dhcp_global_filename }}";
+{% if dhcp_global_filename_efi is defined and dhcp_global_filename_bios is defined %}
+if pxetype = 00:07
+{
+  filename "{{ dhcp_global_filename_efi }}";
+}
+else
+{
+  filename "{{ dhcp_global_filename_bios }}";
+}
+{% elif dhcp_global_filename_efi is defined or dhcp_global_filename_bios is defined  %}
+filename "{{ dhcp_global_filename_efi or dhcp_global_filename_bios }}";
 {% endif %}
 {% if dhcp_global_default_lease_time is defined %}
 default-lease-time {{ dhcp_global_default_lease_time }};

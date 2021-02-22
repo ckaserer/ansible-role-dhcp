@@ -27,7 +27,7 @@
 
         dhcp_global_authoritative: authoritative
         dhcp_global_booting: allow                # allow pxe booting
-        dhcp_global_filename: lpxelinux.0         # pxelinux file with http support
+        dhcp_global_filename_bios: lpxelinux.0    # pxelinux file with http support
         dhcp_global_domain_name: local
         dhcp_global_domain_name_servers:
           - 8.8.8.8                               # google dns

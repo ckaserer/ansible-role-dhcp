@@ -33,7 +33,8 @@ See the [dhcp-options(5)](http://linux.die.net/man/5/dhcp-options) man page for 
 | `dhcp_global_domain_search`       | A list of domain names to be used by the client to locate non-FQDNs(1) |
 | `dhcp_global_failover`            | Failover peer settings (3)                                             |
 | `dhcp_global_failover_peer`       | Name for the failover peer (e.g. `foo`)                                |
-| `dhcp_global_filename`            | Filename to request for boot                                           |
+| `dhcp_global_filename_bios`       | Filename to request for boot when the identified system runs bios bootloader |
+| `dhcp_global_filename_efi`        | Filename to request for boot when the identified system runs efi bootloader |
 | `dhcp_global_includes_missing`    | Boolean.  Continue if `includes` file(s) missing from role's files/    |
 | `dhcp_global_includes`            | List of config files to be included (from `dhcp_config_dir`)           |
 | `dhcp_global_log_facility`        | Global log facility (e.g. `daemon`, `syslog`, `user`, ...)             |
