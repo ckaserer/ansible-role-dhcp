@@ -38,8 +38,10 @@ else
 {
   filename "{{ dhcp_global_filename_bios }}";
 }
-{% elif dhcp_global_filename_efi is defined or dhcp_global_filename_bios is defined  %}
-filename "{{ dhcp_global_filename_efi or dhcp_global_filename_bios }}";
+{% elif dhcp_global_filename_efi is defined %}
+filename "{{ dhcp_global_filename_efi }}";
+{% elif dhcp_global_filename_bios is defined %}
+filename "{{ dhcp_global_filename_bios }}";
 {% endif %}
 {% if dhcp_global_default_lease_time is defined %}
 default-lease-time {{ dhcp_global_default_lease_time }};
